@@ -9,6 +9,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class SuccessApiResponse {
+public class RegisterResponse {
     private String message;
 }

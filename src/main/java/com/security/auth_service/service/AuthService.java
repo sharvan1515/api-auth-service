@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.security.auth_service.dto.LoginRequest;
 import com.security.auth_service.dto.LoginResponse;
 import com.security.auth_service.dto.RegisterRequest;
-import com.security.auth_service.dto.SuccessApiResponse;
+import com.security.auth_service.dto.RegisterResponse;
 import com.security.auth_service.entity.AuthUser;
 import com.security.auth_service.exception.UsernameFound;
 import com.security.auth_service.repository.AuthUserRepository;
@@ -27,7 +27,7 @@ public class AuthService {
 
     private final AuthenticationManager authenticationManager;
 
-    public SuccessApiResponse registerUser(RegisterRequest registerRequest) {
+    public RegisterResponse registerUser(RegisterRequest registerRequest) {
 
         authUserRepository.findByUsername(registerRequest.getUsername())
                 .ifPresent(user -> {
@@ -40,7 +40,7 @@ public class AuthService {
         user.setRole("USER");
         authUserRepository.save(user);
 
-        SuccessApiResponse response = new SuccessApiResponse();
+        RegisterResponse response = new RegisterResponse();
         response.setMessage("User registered successfully");
         return response;
     }
