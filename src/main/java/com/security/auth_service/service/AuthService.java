@@ -8,6 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.security.auth_service.dto.LoginRequest;
+import com.security.auth_service.dto.LoginResponse;
 import com.security.auth_service.dto.RegisterRequest;
 import com.security.auth_service.dto.SuccessApiResponse;
 import com.security.auth_service.entity.AuthUser;
@@ -44,7 +45,7 @@ public class AuthService {
         return response;
     }
 
-    public void loginUser(LoginRequest loginRequest) {
+    public LoginResponse loginUser(LoginRequest loginRequest) {
         
 
         Authentication authentication = authenticationManager.authenticate(
@@ -53,9 +54,11 @@ public class AuthService {
                         loginRequest.getPassword()
                 )
         );
-        
 
+        System.out.println("-----------");
         System.out.println(authentication);
+
+        return new LoginResponse("Login Success !");
 
     }
 

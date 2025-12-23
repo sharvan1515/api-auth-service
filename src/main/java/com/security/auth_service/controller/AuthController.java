@@ -22,11 +22,8 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/login")
-    public String login(@RequestBody LoginRequest loginRequest) {
-
-        authService.loginUser(loginRequest);
-
-        return new String("Login Successful");
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+        return new ResponseEntity<>(authService.loginUser(loginRequest), HttpStatus.OK);
     }
 
     @PostMapping("/register")
